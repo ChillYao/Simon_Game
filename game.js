@@ -3,6 +3,7 @@ var gamePattern = [];
 var userClickedPattern = [];
 var level = 0;
 
+// assign keypress event to the document. This will only happen once.
 $(document).one("keypress", function() {
   nextSequence();
 });
@@ -21,6 +22,8 @@ $(".btn").click(function(){
 function nextSequence(){
   $("#level-title").text("LEVEL "+level);
   level++;
+
+  // generate random integer between 0 and 3
   var randomNumber = Math.floor(Math.random()*4);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
@@ -57,7 +60,7 @@ function checkAnswer(currentLevel){
     audio.play();
     $("body").addClass("game-over");
     setTimeout(function(){ $("body").removeClass("game-over"); }, 200);
-    $("#level-title").text("Game Over. Press any Key to Restart");
+    $("#level-title").text("Game Over. Refresh Page to Restart");
   }
 }
 
